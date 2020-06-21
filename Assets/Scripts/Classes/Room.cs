@@ -9,24 +9,19 @@ public class Room : MonoBehaviour
     public int xSize, ySize, rSize; //length, width, and overall size of the room.
     public int doorNorth, doorEast, doorSouth, doorWest; //The x value of the north door, the y value of the east door, etc... if Value is 0, there is no door leading that direction.
     public int[,] floorTile, floorDeco; //tracks the color variation and flourishes on floor tiles so that they remain the same when loading.
-    public bool[,] reverseTile;
-    public Color roomColor;
-    public GameObject[] tilePF, decoPF;
-    public GameObject doorPF, wallPF, gardenPF, healHutPF, hutPF, signPF, totemPF, workshopPF;
+    public bool[,] reverseTile; //Some decorations are flipped on the X-Axis. This tracks that.
+    public Color roomColor; //Every room has a random color-hue.
 
-    public struct building
-    {
-        public GameObject buildingGO;
-        public float x, y;
+    //Other
+    public int stars, circles, triangles; //Room's resource inventory
 
-        public building(GameObject go, float xc, float yc)
-        {
-            this.buildingGO = go; this.x = xc; this.y = yc;
-        }
-    }
+    //PREFABS
+    public GameObject[] tilePF, decoPF; //These are the prefabs used to instantiate floorTile and floorDeco
+    public GameObject doorPF, wallPF, gardenPF, healHutPF, hutPF, signPF, totemPF, workshopPF; //These are the prefabs for everything else
 
-    public Queue orderList;
-    [HideInInspector] public List<building> buildings;
+    //Queues and Lists
+    [HideInInspector] public Queue orderList;
+    [HideInInspector] public List<GameObject> buildings;
 
     public void RandomRoom(int roomX, int roomY)
     {
@@ -38,7 +33,7 @@ public class Room : MonoBehaviour
         floorTile = new int[xSize + 2, ySize + 2]; //initialize tile array
         floorDeco = new int[xSize + 1, ySize + 1]; //initialize floor decoration array        
         reverseTile = new bool[xSize + 1, ySize + 1];
-        buildings = new List<building>();
+        buildings = new List<GameObject>();
         //Define each index in the above two arrays
         for (int y = 1; y <= ySize; y++)
         {
@@ -66,12 +61,13 @@ public class Room : MonoBehaviour
         doorWest = Random.Range(1, ySize);
         if (roomX == 0) doorWest = 0;
 
-        //Add Hut
-        buildings.Add(new building(hutPF, Random.Range(1, xSize), Random.Range(1, ySize)));
+        //Add Hut, FOR TESTING, REMOVE LATER
+        //buildings.Add(new building(hutPF, Random.Range(1, xSize), Random.Range(1, ySize)));
     }
 
     public void DrawRoom()
     {
+        explored = true;
         //draw walls
         for (int x = 0; x <= xSize + 1; x++)
         {
@@ -110,11 +106,22 @@ public class Room : MonoBehaviour
         if (doorEast > 0)   { GameObject go = Instantiate(doorPF, new Vector3(xSize + 1, doorEast, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
         if (doorSouth > 0)  { GameObject go = Instantiate(doorPF, new Vector3(doorSouth, 0, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
         if (doorWest > 0)   { GameObject go = Instantiate(doorPF, new Vector3(0, doorWest, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
-
-        foreach (building Structure in buildings)
-        {
-            GameObject go = Instantiate(Structure.buildingGO, new Vector3(Structure.x, Structure.y, 0), Quaternion.identity);
-            go.transform.parent = gameObject.transform;
-        }
     }    
+
+    public void AddBuilding(string b, float x, float y)
+    {
+        GameObject goPF = null;
+        if (b == "Hut") goPF = hutPF;
+        if (b == "Healer") goPF = healHutPF;
+        if (b == "Garden") goPF = gardenPF;
+        if (b == "Totem") goPF = totemPF;
+        if (b == "Sign") goPF = signPF;
+        if (b == "Workshop") goPF = workshopPF;
+        if (goPF != null)
+        {
+            GameObject go = Instantiate(goPF, new Vector3(x, y, 0), Quaternion.identity);
+            go.transform.parent = gameObject.transform;
+            buildings.Add(go);
+        }
+    }
 }

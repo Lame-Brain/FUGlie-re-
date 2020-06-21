@@ -8,6 +8,13 @@ TagManager:
   - Floor
   - Wall
   - Door
+  - Room
+  - Hut
+  - Healer
+  - Garden
+  - Sign
+  - Totem
+  - Workshop
   layers:
   - Default
   - TransparentFX

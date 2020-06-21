@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     public float Camera_Speed;
-    public float roomX, roomY, roomZ;
 
     // Update is called once per frame
     void Update()
@@ -37,16 +36,14 @@ public class CameraControl : MonoBehaviour
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) y = y - Camera_Speed;
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) x = x + Camera_Speed;
 
-        //bound camera movement, relative to target object
-        float minX = GameManager.GAME.room[GameManager.CURRENTROOM].transform.position.x;
-        float minY = GameManager.GAME.room[GameManager.CURRENTROOM].transform.position.y;        
-        float maxX = minX + GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().xSize;
-        float maxY = minY + GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().ySize;        
-        if (x > maxX + 2) x = maxX + 2; if (x < minX - 2) x = minX - 2;
-        if (y > maxY + 2) y = maxY + 2; if (y < minY - 2) y = minY - 2;
-        if (z > zed - 2) z = zed - 2; if (z < zed - 15) z = zed - 15;
-
-        roomX = minX; roomY = minY; roomZ = zed;
+             //bound camera movement, relative to target object
+             float minX = GameManager.GAME.room[GameManager.CURRENTROOM].transform.position.x;
+             float minY = GameManager.GAME.room[GameManager.CURRENTROOM].transform.position.y;        
+             float maxX = minX + GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().xSize;
+             float maxY = minY + GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().ySize;        
+             if (x > maxX + 2) x = maxX + 2; if (x < minX - 2) x = minX - 2;
+             if (y > maxY + 2) y = maxY + 2; if (y < minY - 2) y = minY - 2;
+             if (z > zed - 2) z = zed - 2; if (z < zed - 15) z = zed - 15;
 
         Camera.main.transform.position = new Vector3(x, y, z);
     }

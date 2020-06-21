@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7578029789937429775}
   m_Layer: 0
   m_Name: Room
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,6 +53,9 @@ MonoBehaviour:
   doorSouth: 0
   doorWest: 0
   roomColor: {r: 0, g: 0, b: 0, a: 0}
+  stars: 0
+  circles: 0
+  triangles: 0
   tilePF:
   - {fileID: 6488927167306949795, guid: 16f0711ef54c1bb4b99b467d9de67f61, type: 3}
   - {fileID: 5234532126837962404, guid: 34e8598393904e6489fee4e2dd75fbaa, type: 3}
@@ -85,3 +88,4 @@ MonoBehaviour:
   totemPF: {fileID: 6584197195930100085, guid: 80813a3a3e006e04b836ae1dc6b590e0, type: 3}
   workshopPF: {fileID: 1884985886503155421, guid: 1187a5720ebf0a24b958beb477fedb7a,
     type: 3}
+  buildings: []
