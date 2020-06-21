@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1952440652286814443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556444334412866217}
+  - component: {fileID: 7578029789937429775}
+  m_Layer: 0
+  m_Name: Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556444334412866217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952440652286814443}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7578029789937429775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952440652286814443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c85a6182f3eb0b479d4e4fef0c9c046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: 
+  explored: 0
+  xSize: 0
+  ySize: 0
+  rSize: 0
+  doorNorth: 0
+  doorEast: 0
+  doorSouth: 0
+  doorWest: 0
+  roomColor: {r: 0, g: 0, b: 0, a: 0}
+  tilePF:
+  - {fileID: 6488927167306949795, guid: 16f0711ef54c1bb4b99b467d9de67f61, type: 3}
+  - {fileID: 5234532126837962404, guid: 34e8598393904e6489fee4e2dd75fbaa, type: 3}
+  - {fileID: 4063733808362807399, guid: b7b01653e4d47d24e86f2f1ad6e06d96, type: 3}
+  - {fileID: 7957663643691266415, guid: 60964e313494ebe44ae538baaad658ce, type: 3}
+  - {fileID: 8798168543373468424, guid: f9a70ace53de1a34cbab489426e767c3, type: 3}
+  - {fileID: 5821659892420521233, guid: 38872e7b7ad4bef49963c1c98e713ebf, type: 3}
+  - {fileID: 1548672233177750673, guid: ce1be7dbbb66bc148aa025962301b72a, type: 3}
+  - {fileID: 4396165424801253649, guid: 9b3eb2ff207289c40856b1da4483d4ff, type: 3}
+  decoPF:
+  - {fileID: 2009902018154128890, guid: b0c2d33b7bcef924bb8bd3e2af686d86, type: 3}
+  - {fileID: 192119525554886912, guid: 7f6b864a398c89d4aaa59abd2af91cb3, type: 3}
+  - {fileID: 426021937868176440, guid: 1814d7f4e2a140d43a1674a0b450211c, type: 3}
+  - {fileID: 237016300097609122, guid: 0cabf76c1b1fd4e4eadbe8f9084cce3f, type: 3}
+  - {fileID: 6313165339348647339, guid: e967eec06de7a7643b458b98dc9493b1, type: 3}
+  - {fileID: 8895467272064496085, guid: d4306f6514126884a8a0a290d146ef4f, type: 3}
+  - {fileID: 781034148054315924, guid: 88fadd0ab0bb4ab4cacf115d79e06fc9, type: 3}
+  - {fileID: 434981876127876518, guid: 3355e5c3fb7a79b4fa0248a1dc4d9bd7, type: 3}
+  - {fileID: 515959792985304301, guid: acbf91949a3ba5d45a935b0894e8fdee, type: 3}
+  - {fileID: 206155895259622179, guid: d926395a9e6cf20478e4b5e96ae7258c, type: 3}
+  - {fileID: 8883774075706840887, guid: fba2340208649db40acb527447d61f48, type: 3}
+  - {fileID: 8230547673873962731, guid: fc767dae6ab3174449738b24980de96e, type: 3}
+  doorPF: {fileID: 7660907140925107132, guid: a28009f1bb4e0c8478604c54d3d3468f, type: 3}
+  wallPF: {fileID: 8912460536455196530, guid: 28fdd63896d4b0a44a6ca40cf6fc9585, type: 3}
+  gardenPF: {fileID: 8122055809181230289, guid: 84935f11eafed474badd3a1609aa11f5,
+    type: 3}
+  healHutPF: {fileID: 15232891865180255, guid: ab2e647a09cbe314a9fb8404a3817456, type: 3}
+  hutPF: {fileID: 8704152773867065077, guid: 171e389cf9750f04f96120044c43c3a5, type: 3}
+  signPF: {fileID: 3120308802991999205, guid: 214a091ced68bb241a9a77bad38f4057, type: 3}
+  totemPF: {fileID: 6584197195930100085, guid: 80813a3a3e006e04b836ae1dc6b590e0, type: 3}
+  workshopPF: {fileID: 1884985886503155421, guid: 1187a5720ebf0a24b958beb477fedb7a,
+    type: 3}
