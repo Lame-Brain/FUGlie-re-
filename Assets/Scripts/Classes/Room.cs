@@ -76,38 +76,45 @@ public class Room : MonoBehaviour
         for (int x = 0; x <= xSize + 1; x++)
         {
             GameObject go1 = Instantiate(wallPF, new Vector3(x, 0, 0), Quaternion.identity);
+            go1.transform.parent = gameObject.transform;
             go1.GetComponent<SpriteRenderer>().color = roomColor;
             GameObject go2 = Instantiate(wallPF, new Vector3(x, ySize+1, 0), Quaternion.identity);
             go2.GetComponent<SpriteRenderer>().color = roomColor;
+            go2.transform.parent = gameObject.transform;
         }
         for (int y = 0; y <= ySize + 1; y++)
         {
             GameObject go1 = Instantiate(wallPF, new Vector3(0, y, 0), Quaternion.identity);
             go1.GetComponent<SpriteRenderer>().color = roomColor;
+            go1.transform.parent = gameObject.transform;
             GameObject go2 = Instantiate(wallPF, new Vector3(xSize+1, y, 0), Quaternion.identity);
             go2.GetComponent<SpriteRenderer>().color = roomColor;
+            go2.transform.parent = gameObject.transform;
         }
         //Draw Floors
-        for(int y = 1; y <= ySize; y++)
+        for (int y = 1; y <= ySize; y++)
         {
             for(int x = 1; x <= xSize; x++)
             {
                 GameObject go1 = Instantiate(tilePF[floorTile[x, y]], new Vector3(x, y, 0), Quaternion.identity);
                 go1.GetComponent<SpriteRenderer>().color = roomColor;
+                go1.transform.parent = gameObject.transform;
                 GameObject go2 = Instantiate(decoPF[floorDeco[x, y]], new Vector3(x, y, 0), Quaternion.identity);
                 if(floorDeco[x,y] < 5 || floorDeco[x,y] > 8) go2.GetComponent<SpriteRenderer>().color = roomColor;
                 go2.GetComponent<SpriteRenderer>().flipX = reverseTile[x,y];
+                go2.transform.parent = gameObject.transform;
             }
         }
-        //Draw doors
-        if (doorNorth > 0) Instantiate(doorPF, new Vector3(doorNorth, 0, 0), Quaternion.identity);
-        if (doorEast > 0) Instantiate(doorPF, new Vector3(xSize + 1, doorEast, 0), Quaternion.identity);
-        if (doorSouth > 0) Instantiate(doorPF, new Vector3(doorSouth, ySize + 1, 0), Quaternion.identity);
-        if (doorWest > 0) Instantiate(doorPF, new Vector3(0, doorWest, 0), Quaternion.identity);
+        //Draw doors        
+        if (doorNorth > 0)  { GameObject go = Instantiate(doorPF, new Vector3(doorNorth, ySize + 1, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
+        if (doorEast > 0)   { GameObject go = Instantiate(doorPF, new Vector3(xSize + 1, doorEast, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
+        if (doorSouth > 0)  { GameObject go = Instantiate(doorPF, new Vector3(doorSouth, 0, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
+        if (doorWest > 0)   { GameObject go = Instantiate(doorPF, new Vector3(0, doorWest, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
 
         foreach (building Structure in buildings)
         {
-            Instantiate(Structure.buildingGO, new Vector3(Structure.x, Structure.y, 0), Quaternion.identity);
+            GameObject go = Instantiate(Structure.buildingGO, new Vector3(Structure.x, Structure.y, 0), Quaternion.identity);
+            go.transform.parent = gameObject.transform;
         }
-    }
+    }    
 }
