@@ -119,7 +119,7 @@ public class Room : MonoBehaviour
         if (b == "Workshop") goPF = workshopPF;
         if (goPF != null)
         {
-            GameObject go = Instantiate(goPF, new Vector3(x, y, 0), Quaternion.identity);
+            GameObject go = Instantiate(goPF, new Vector3(x, y, 0), goPF.transform.rotation);
             go.transform.parent = gameObject.transform;
             buildings.Add(go);
         }
