@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 80983010787996304}
   - component: {fileID: 2559489625703742860}
+  - component: {fileID: 4537761752629116201}
   m_Layer: 0
   m_Name: Totem
   m_TagString: Totem
@@ -81,3 +82,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &4537761752629116201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584197195930100085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99881b9f4882ebf469d1c5be480b5aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

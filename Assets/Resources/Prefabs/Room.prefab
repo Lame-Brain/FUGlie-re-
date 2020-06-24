@@ -79,7 +79,7 @@ MonoBehaviour:
   - {fileID: 8883774075706840887, guid: fba2340208649db40acb527447d61f48, type: 3}
   - {fileID: 8230547673873962731, guid: fc767dae6ab3174449738b24980de96e, type: 3}
   doorPF: {fileID: 7660907140925107132, guid: a28009f1bb4e0c8478604c54d3d3468f, type: 3}
-  wallPF: {fileID: 8912460536455196530, guid: 28fdd63896d4b0a44a6ca40cf6fc9585, type: 3}
+  wallPF: {fileID: 2409248618280798915, guid: 415bf5258e348024e98b421733eb534c, type: 3}
   gardenPF: {fileID: 8122055809181230289, guid: 84935f11eafed474badd3a1609aa11f5,
     type: 3}
   healHutPF: {fileID: 15232891865180255, guid: ab2e647a09cbe314a9fb8404a3817456, type: 3}
@@ -88,4 +88,5 @@ MonoBehaviour:
   totemPF: {fileID: 6584197195930100085, guid: 80813a3a3e006e04b836ae1dc6b590e0, type: 3}
   workshopPF: {fileID: 1884985886503155421, guid: 1187a5720ebf0a24b958beb477fedb7a,
     type: 3}
+  cavePF: {fileID: 412380528826775751, guid: 0a703521d5523b142bfa28000d83b6ac, type: 3}
   buildings: []

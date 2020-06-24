@@ -17,7 +17,7 @@ public class Room : MonoBehaviour
 
     //PREFABS
     public GameObject[] tilePF, decoPF; //These are the prefabs used to instantiate floorTile and floorDeco
-    public GameObject doorPF, wallPF, gardenPF, healHutPF, hutPF, signPF, totemPF, workshopPF; //These are the prefabs for everything else
+    public GameObject doorPF, wallPF, gardenPF, healHutPF, hutPF, signPF, totemPF, workshopPF, cavePF; //These are the prefabs for everything else
 
     //Queues and Lists
     [HideInInspector] public Queue orderList;
@@ -71,21 +71,40 @@ public class Room : MonoBehaviour
         //draw walls
         for (int x = 0; x <= xSize + 1; x++)
         {
-            GameObject go1 = Instantiate(wallPF, new Vector3(x, 0, 0), Quaternion.identity);
-            go1.transform.parent = gameObject.transform;
-            go1.GetComponent<SpriteRenderer>().color = roomColor;
-            GameObject go2 = Instantiate(wallPF, new Vector3(x, ySize+1, 0), Quaternion.identity);
-            go2.GetComponent<SpriteRenderer>().color = roomColor;
-            go2.transform.parent = gameObject.transform;
+            GameObject go1, go2;
+            if(x == 0 || x != doorSouth)
+            {
+                go1 = Instantiate(wallPF, new Vector3(x, 0, -.5f), Quaternion.identity);
+                go1.transform.parent = gameObject.transform;
+                //go1.GetComponent<SpriteRenderer>().color = roomColor;
+                go1.GetComponent<MeshRenderer>().material.color = roomColor;
+            }
+            if (x == 0 || x != doorNorth)
+            {
+                go2 = Instantiate(wallPF, new Vector3(x, ySize + 1, -.5f), Quaternion.identity);
+                //go2.GetComponent<SpriteRenderer>().color = roomColor;
+                go2.GetComponent<MeshRenderer>().material.color = roomColor;
+                go2.transform.parent = gameObject.transform;
+            }
         }
-        for (int y = 0; y <= ySize + 1; y++)
+        for (int y = 1; y <= ySize; y++)
         {
-            GameObject go1 = Instantiate(wallPF, new Vector3(0, y, 0), Quaternion.identity);
-            go1.GetComponent<SpriteRenderer>().color = roomColor;
-            go1.transform.parent = gameObject.transform;
-            GameObject go2 = Instantiate(wallPF, new Vector3(xSize+1, y, 0), Quaternion.identity);
-            go2.GetComponent<SpriteRenderer>().color = roomColor;
-            go2.transform.parent = gameObject.transform;
+            GameObject go1, go2;
+            if (y != doorWest)
+            {
+                go1 = Instantiate(wallPF, new Vector3(0, y, -.5f), Quaternion.identity);
+                //go1.GetComponent<SpriteRenderer>().color = roomColor;
+                go1.GetComponent<MeshRenderer>().material.color = roomColor;
+                go1.transform.parent = gameObject.transform;
+            }
+
+            if (y != doorEast)
+            { 
+                go2 = Instantiate(wallPF, new Vector3(xSize + 1, y, -.5f), Quaternion.identity);
+                //go2.GetComponent<SpriteRenderer>().color = roomColor;
+                go2.GetComponent<MeshRenderer>().material.color = roomColor;
+                go2.transform.parent = gameObject.transform;
+            }
         }
         //Draw Floors
         for (int y = 1; y <= ySize; y++)
@@ -102,10 +121,10 @@ public class Room : MonoBehaviour
             }
         }
         //Draw doors        
-        if (doorNorth > 0)  { GameObject go = Instantiate(doorPF, new Vector3(doorNorth, ySize + 1, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
-        if (doorEast > 0)   { GameObject go = Instantiate(doorPF, new Vector3(xSize + 1, doorEast, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
-        if (doorSouth > 0)  { GameObject go = Instantiate(doorPF, new Vector3(doorSouth, 0, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
-        if (doorWest > 0)   { GameObject go = Instantiate(doorPF, new Vector3(0, doorWest, 0), Quaternion.identity); go.transform.parent = gameObject.transform; }
+        if (doorNorth > 0)  { GameObject go = Instantiate(cavePF, new Vector3(doorNorth, ySize + 1, -0.5f), Quaternion.identity); go.GetComponent<MeshRenderer>().material.color = roomColor; go.transform.parent = gameObject.transform; go.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = roomColor; }
+        if (doorEast > 0)   { GameObject go = Instantiate(cavePF, new Vector3(xSize + 1, doorEast, -0.5f), Quaternion.identity); go.GetComponent<MeshRenderer>().material.color = roomColor; go.transform.parent = gameObject.transform; go.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = roomColor; }
+        if (doorSouth > 0)  { GameObject go = Instantiate(cavePF, new Vector3(doorSouth, 0, -0.5f), Quaternion.identity); go.GetComponent<MeshRenderer>().material.color = roomColor; go.transform.parent = gameObject.transform; go.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = roomColor; }
+        if (doorWest > 0)   { GameObject go = Instantiate(cavePF, new Vector3(0, doorWest, -0.5f), Quaternion.identity); go.GetComponent<MeshRenderer>().material.color = roomColor; go.transform.parent = gameObject.transform; go.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = roomColor; }
     }    
 
     public void AddBuilding(string b, float x, float y)

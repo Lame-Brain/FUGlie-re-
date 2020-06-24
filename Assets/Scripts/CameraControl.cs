@@ -60,10 +60,10 @@ public class CameraControl : MonoBehaviour
         //camera bounding code. I place a test object... 
         Test_Target.transform.Translate(mx, my, 0, Space.Self);
         float tx = Test_Target.transform.position.x, ty = Test_Target.transform.position.y;
-        float maxX = GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().xSize, maxY = GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().ySize;
-        if (tx < -2) tx = -2;
+        float maxX = GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().xSize - 1, maxY = GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().ySize - 1;
+        if (tx < 1) tx = 1;
         if (tx > maxX) tx = maxX;
-        if (ty < -2) ty = -2;
+        if (ty < 1) ty = 1;
         if (ty > maxY) ty = maxY;
         if (zoom < 2) zoom = 2;
         if (zoom > 15) zoom = 15;
