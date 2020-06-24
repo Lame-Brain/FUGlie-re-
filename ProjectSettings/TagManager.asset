@@ -52,3 +52,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 2616218133
+    locked: 0
+  - name: Object
+    uniqueID: 132027265
+    locked: 0
+  - name: FUG
+    uniqueID: 1835248393
+    locked: 0
+  - name: Wall
+    uniqueID: 787307819
+    locked: 0

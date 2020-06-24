@@ -5,46 +5,58 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     public float Camera_Speed;
+    public GameObject Camera_Target;
+    public float zoom;
+    private GameObject Test_Target;
+
+
+    void Start()
+    {
+        Test_Target = new GameObject("Dummy");        
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //Get the x,y,z location of camera
-        float x = Camera.main.transform.position.x; float y = Camera.main.transform.position.y; float z = Camera.main.transform.position.z;
-        //get the z location of the target, then set camera speed relative to how near the camera is to the target object. Closer is slower, Further is faster.
-        float zed = GameManager.GAME.room[GameManager.CURRENTROOM].transform.position.z; float CS = ((zed-z) + 1); Camera_Speed = CS * 0.01f; 
+        //reset move x and move y variables (and zoom)
+        float mx = 0, my = 0;
+        zoom = Mathf.Abs(Camera.main.transform.position.z - Camera_Target.transform.position.z);
+        Camera_Speed = 0.025f * zoom;
 
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0f) //The mousewheel has scrolled
         {
             //Mouse wheel scroll up
-            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0f) z = z + .5f; //zoom in
+            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0f) { zoom = zoom - 0.5f; }//zoom in
             //Mouse wheel scroll down
-            if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f) z = z - .5f; //zoom out
+            if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f) { zoom = zoom + 0.5f; } //zoom out
         }
 
         if (Input.GetMouseButton(2) || Input.GetMouseButton(1)) //Middle Mouse Button or Right Mouse Button
         {
-            if (Input.GetAxis("Mouse X") < 0) x = x + Camera_Speed * 2f; //mouse moves left
-            if (Input.GetAxis("Mouse X") > 0) x = x - Camera_Speed * 2f; //mouse moves right
-            if (Input.GetAxis("Mouse Y") < 0) y = y + Camera_Speed * 2f; //mouse moves down
-            if (Input.GetAxis("Mouse Y") > 0) y = y - Camera_Speed * 2f; //mouse moves up
+            if (Input.GetAxis("Mouse X") < 0) mx = Camera_Speed; //mouse moves left
+            if (Input.GetAxis("Mouse X") > 0) mx = -Camera_Speed; //mouse moves right
+            if (Input.GetAxis("Mouse Y") < 0) my = Camera_Speed; ; //mouse moves down
+            if (Input.GetAxis("Mouse Y") > 0) my = -Camera_Speed; ; //mouse moves up
         }
 
         //WASD or ArrowKeys
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) y = y + Camera_Speed;
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) x = x - Camera_Speed;
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) y = y - Camera_Speed;
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) x = x + Camera_Speed;
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) my = Camera_Speed;
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) mx = -Camera_Speed;
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) my = -Camera_Speed;
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) mx = Camera_Speed;
 
-             //bound camera movement, relative to target object
-             float minX = GameManager.GAME.room[GameManager.CURRENTROOM].transform.position.x;
-             float minY = GameManager.GAME.room[GameManager.CURRENTROOM].transform.position.y;        
-             float maxX = minX + GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().xSize;
-             float maxY = minY + GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().ySize;        
-             if (x > maxX + 2) x = maxX + 2; if (x < minX - 2) x = minX - 2;
-             if (y > maxY + 2) y = maxY + 2; if (y < minY - 2) y = minY - 2;
-             if (z > zed - 2) z = zed - 2; if (z < zed - 15) z = zed - 15;
-
-        Camera.main.transform.position = new Vector3(x, y, z);
+        //camera bounding code. I place a test object... 
+        Test_Target.transform.Translate(mx, my, 0, Space.Self);
+        float tx = Test_Target.transform.position.x, ty = Test_Target.transform.position.y;
+        float maxX = GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().xSize, maxY = GameManager.GAME.room[GameManager.CURRENTROOM].GetComponent<Room>().ySize;
+        if (tx > -2 && tx < maxX + 2 && ty > -2 && ty < maxY + 2) //... and if it is in bounds....
+        {
+            //..then I set the position of the real camera
+            Camera_Target.transform.Translate(mx, my, 0, Space.Self);
+            Camera.main.transform.LookAt(Camera_Target.transform.position, transform.up);
+            Camera.main.transform.localPosition = new Vector3(0, -zoom, -zoom);
+        }
+        //then I reset the positon of the test object
+        Test_Target.transform.position = Camera_Target.transform.position;
     }
 }

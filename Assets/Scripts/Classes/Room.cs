@@ -39,7 +39,7 @@ public class Room : MonoBehaviour
         {
             for(int x = 1; x <= xSize; x++)
             {
-                int floorDecoRand = Random.Range(0, 750); if (floorDecoRand > 11) floorDecoRand = 0; //Floor deco can be 0 to 7, but heavily favors 0
+                int floorDecoRand = Random.Range(0, 75); if (floorDecoRand > 11) floorDecoRand = 0; //Floor deco can be 0 to 7, but heavily favors 0
                 floorTile[x, y] = Random.Range(0, 7);
                 floorDeco[x, y] = floorDecoRand;
                 reverseTile[x, y] = (Random.Range(0, 100) > 50);
